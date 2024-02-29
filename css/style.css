@@ -14,30 +14,43 @@
     margin-top: 30px;
     padding: 2rem;
     background-color: blanchedalmond;
-    
+         
 }
 #headContenedor{
-    max-height: 10%;
+    max-height: 15%;
     background-color: blanchedalmond;
     display: flex;
-    /* align-items: center; */
+    margin-bottom: 20px;
     justify-content: center;
-
 }
 #contenidoContenedor{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 10rem;
     background-color: blanchedalmond;
-
+ 
 }
 
+.secciones{
+    display: flex;
+    flex-direction: column ;
+    align-items: center ;
+    border-radius: 1rem;
+    background-color: transparent;
+}
 
+.Informacion{
+    display: none;
+    /* visibility:hidden; */
+}
+/* h2{
+    display: none;
+
+} */
 
 button{
     padding: 2rem;
-    border: 4px solid blanchedalmond;
-    border-radius: 1rem;
+    border: 4px solid transparent;
     text-transform: uppercase ;
 }
 button:hover{
@@ -51,3 +64,4 @@ button:hover{
     align-items: center;
     justify-content: center;
 }
+
