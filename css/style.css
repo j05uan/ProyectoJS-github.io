@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: aliceblue;
     font-size: none;
     list-style-type: none;
 }
@@ -16,13 +15,58 @@
     background-color: blanchedalmond;
          
 }
+#inicio{
+    
+    max-width: 100%;
+    height: 967px;
+    /* padding: 4px auto; */
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+}
+#left{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    display: left;
+    width: 70%;
+    height: 100%;
+    background-color: aliceblue;
+}
+#Rigth{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    display: flex;
+    color: black;
+    gap: 3rem;
+    flex-direction: column;
+}
+#ascceso{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;    
+}
+.botoninicio{
+    border: 2px solid transparent;
+    padding: .6rem;
+
+}
+
 #headContenedor{
+    padding: 4px;
     max-height: 15%;
     background-color: blanchedalmond;
     display: flex;
     margin-bottom: 20px;
     justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
 }
+I{
+        font-size: 2rem;
+}
+
 #contenidoContenedor{
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -41,22 +85,18 @@
 
 .Informacion{
     display: none;
-    /* visibility:hidden; */
 }
-/* h2{
-    display: none;
-
-} */
 
 button{
     padding: 2rem;
     border: 4px solid transparent;
     text-transform: uppercase ;
 }
+
 button:hover{
     cursor: pointer;
     background-color: blanchedalmond;
-    border:4px solid aliceblue ;
+    border: 4px solid aliceblue ;
 }
 #head{
     padding: 25px;
@@ -65,3 +105,14 @@ button:hover{
     justify-content: center;
 }
 
+.botonsEstudiantes{
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+#crearEstudiante{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    
+}
