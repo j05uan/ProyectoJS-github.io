@@ -44,6 +44,7 @@ const opcionesEstudiantes= async ()=>{
           <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudinte()">Modificar Estudinte</button>
           <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Estudintes</button>
           <div id="crearEstudiante"></div>
+          <button id="atras" class="atras" onclick="inicio()">atras</button>
           
       </form>
   `;
@@ -84,13 +85,16 @@ const formularioCrearEstudinte= async()=>{
         <label for="emailEstudiante">Correo Electrónico del Estudiante:</label>
         <input type="email" id="emailEstudiante" required>
         <button type="button" onclick="crearEstudiante()">Crear Estudiante</button>
-            
+        <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
       </form>
   `;
-
+   const atras=document.getElementById('atras');
+   atras.style.display = 'none';
    boton1.style.display='none';
-   boton2.style.display='none'
-   boton3.style.display='none' 
+   boton2.style.display='none';
+   boton3.style.display='none';
+
+   await crearEstudiante();
    
 }
 const crearEstudiante= async ()=>{
@@ -150,8 +154,10 @@ const modificarEstudinte =async()=>{
         
         <button for="emailEstudiante" onclick="modificarEmail()">Correo Electrónico del Estudiante:</button>
         
-        <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
-            
+        
+        
+        <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
+        
       </form>
   `;
     }
@@ -168,19 +174,28 @@ const modificarIdentificacion=()=>{
     const contenedorestu = document.getElementById('crearEstudiante');
     contenedorestu.innerHTML = `
     <form id="MenuModificarEstudiante">
-    <h3>Seleccione el item que desea modificar</h3>
+    <h3>Seleccione el item que desea Identificacion</h3>
     <label for="identificacionEstudiante">Numero de Identificacion del Estudiante:</label>
     <input type="number" id="identificacionEstudiante" required>
+    
+    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
+        
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
     </form>
+
     `;
 }
 const modificarNombre=()=>{
     const contenedorestu = document.getElementById('crearEstudiante');
     contenedorestu.innerHTML = `
     <form id="MenuModificarEstudiante">
-    <h3>Menu Modificar Estudiantes</h3>
+    <h3>Menu Modificar Nombre</h3>
     <label for="nombreEstudiante">Nombre del Estudiante:</label>
     <input type="text" id="nombreEstudiante" required></input>
+    
+    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
+        
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
     </form>
     `;
 }
@@ -189,9 +204,13 @@ const modificarEdad=()=>{
     const contenedorestu = document.getElementById('crearEstudiante');
     contenedorestu.innerHTML = `
     <form id="MenuModificarEstudiante">
-    <h3>Menu Modificar Estudiantes</h3>
+    <h3>Menu Modificar Edad</h3>
     <label for="identificacionEstudiante">Numero de Identificacion del Estudiante:</label>
     <input type="number" id="identificacionEstudiante" required>
+    
+    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
+        
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
     </form>
     `;
 }
@@ -199,9 +218,13 @@ const modificarEmail=()=>{
     const contenedorestu = document.getElementById('crearEstudiante');
     contenedorestu.innerHTML = `
     <form id="MenuModificarEstudiante">
-    <h3>Menu Modificar Estudiantes</h3>
+    <h3>Menu Modificar Email</h3>
     <label for="emailEstudiante">Correo Electrónico del Estudiante:</label>
     <input type="email" id="emailEstudiante" required>
+    
+    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
+        
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
     </form>
     `;
 }
@@ -218,7 +241,7 @@ const verificarEstudiantes= async=()=>{
       </form>
   `;
     for ( const estudiante of listaEstiudiantes){
-        if (estudiante[identificaion]==="identificacionEstudiante"){
+        if (estudiante[identificaion]===id){
             alert('Estudiante Encontrado!');
             Estado='Encontrado'
         }
