@@ -26,17 +26,7 @@ const guardarEstudiante= async(nuevoEstudiante)=>{
 
 const opcionesEstudiantes= async ()=>{
     // await loadEstudiantes();
-    const estudiantesform = document.getElementById('OpcionesEstudiantes');
-    const contenedor = document.getElementById('contenedor');
-    const boton = document.getElementById("botonEstudiantes");
-    const Departamentos =document.getElementById('Departamentos');
-    const Prosfesores =document.getElementById('Prosfesores');
-    const Universidad1 =document.getElementById('Universidad1');
-    const Universidad2 =document.getElementById('Universidad2');
-    const Universidad3 =document.getElementById('Universidad3');
-    const Universidad4 =document.getElementById('Universidad4');
-    const Universidad5 =document.getElementById('Universidad5');
-    const Universidad6 =document.getElementById('Universidad6');
+    
     const contenedor2 = document.getElementById('OpcionesEstudiantes');
     contenedor2.innerHTML = `
       <form>
@@ -44,211 +34,209 @@ const opcionesEstudiantes= async ()=>{
           <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudinte()">Modificar Estudinte</button>
           <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Estudintes</button>
           <div id="crearEstudiante"></div>
-          <button id="atras" class="atras" onclick="inicio()">atras</button>
+          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
           
-      </form>
-  `;
-    contenedor.style.alignContent='center';
-    estudiantesform.style.display='flex';
-    estudiantesform.style.width='1550px';
-    estudiantesform.style.height='630px';
-    estudiantesform.style.justifyContent='center';
-    estudiantesform.style.padding='2rem ';
+      </form>`;
+    stylesContenedorNuevo(contenedor2);
+    limpiarpantalla();
 
-
-    boton.style.display="none";
-    Departamentos.style.display='none';
-    Prosfesores.style.display='none';
-    Universidad1.style.display='none';
-    Universidad2.style.display='none';
-    Universidad3.style.display='none';
-    Universidad4.style.display='none';
-    Universidad5.style.display='none';
-    Universidad6.style.display='none';
 
 }
 
-const formularioCrearEstudinte= async()=>{
-    const boton1= document.getElementById('botoncrearEstudinte');
-    const boton2 = document.getElementById('botonmodificarEstudinte')
-    const boton3 = document.getElementById('botonmostrarListado')
-    const contenedorestu = document.getElementById('crearEstudiante');
-    contenedorestu.innerHTML = `
+const formularioCrearEstudiante = async () => {
+    const boton1 = document.getElementById('botoncrearEstudiante');
+    const boton2 = document.getElementById('botonmodificarEstudiante');
+    const boton3 = document.getElementById('botonmostrarListado');
+    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    contenedorEstudiantes.innerHTML = `
       <form id="MenuCrearEstudiante">
         <h3>Menu Crear Estudiantes</h3>
-        <label for="identificacionEstudiante">Numero de Identificacion del Estudiante:</label>
+        <label for="identificacionEstudiante">Número de Identificación del Estudiante:</label>
         <input type="number" id="identificacionEstudiante" required>
         <label for="nombreEstudiante">Nombre del Estudiante:</label>
         <input type="text" id="nombreEstudiante" required>
-        <label for="edadEstudiante">Edad del Estudiante:</label>
-        <input type="number" id="edadEstudiante" required>
-        <label for="emailEstudiante">Correo Electrónico del Estudiante:</label>
-        <input type="email" id="emailEstudiante" required>
+        <label for="apellidoEstudiante">Apellido del Estudiante:</label>
+        <input type="text" id="apellidoEstudiante" required>
+        <label for="tipoDocumentoEstudiante">Tipo de Documento:</label>
+        <input type="text" id="tipoDocumentoEstudiante" required>
+        <label for="numeroDocumentoEstudiante">Número de Documento:</label>
+        <input type="text" id="numeroDocumentoEstudiante" required>
+        <label for="ciudadResidenciaEstudiante">Ciudad de Residencia:</label>
+        <input type="text" id="ciudadResidenciaEstudiante" required>
+        <label for="direccionEstudiante">Dirección del Estudiante:</label>
+        <input type="text" id="direccionEstudiante" required>
+        <label for="telefonoEstudiante">Teléfono del Estudiante:</label>
+        <input type="text" id="telefonoEstudiante" required>
+        <label for="fechaNacimientoEstudiante">Fecha de Nacimiento del Estudiante:</label>
+        <input type="text" id="fechaNacimientoEstudiante" required>
+        <label for="sexoEstudiante">Sexo del Estudiante:</label>
+        <input type="text" id="sexoEstudiante" required>
+        <label for="programaEstudiante">ID del Programa:</label>
+        <input type="text" id="programaEstudiante" required>
         <button type="button" onclick="crearEstudiante()">Crear Estudiante</button>
-        <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
+        <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
       </form>
   `;
-   const atras=document.getElementById('atras');
-   atras.style.display = 'none';
-   boton1.style.display='none';
-   boton2.style.display='none';
-   boton3.style.display='none';
-
-   await crearEstudiante();
-   
+    const atras = document.getElementById('atras');
+    atras.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
+    await crearEstudiante();
 }
-const crearEstudiante= async ()=>{
-    const nombreInput=document.getElementById('nombreEstudiante');
-    const edadInput=document.getElementById('edadEstudiante');
-    const emailInput=document.getElementById('emailEstudiante');
-    const IdInput=document.getElementById('identificacionEstudiante')
 
-    const nombre=nombreInput.value;
-    const edad=edadInput.value;
-    const email=emailInput.value;
-    const Id=IdInput.value;
+const crearEstudiante = async () => {
+    const idInput = document.getElementById('identificacionEstudiante');
+    const nombreInput = document.getElementById('nombreEstudiante');
+    const apellidoInput = document.getElementById('apellidoEstudiante');
+    const tipoDocumentoInput = document.getElementById('tipoDocumentoEstudiante');
+    const numeroDocumentoInput = document.getElementById('numeroDocumentoEstudiante');
+    const ciudadResidenciaInput = document.getElementById('ciudadResidenciaEstudiante');
+    const direccionInput = document.getElementById('direccionEstudiante');
+    const telefonoInput = document.getElementById('telefonoEstudiante');
+    const fechaNacimientoInput = document.getElementById('fechaNacimientoEstudiante');
+    const sexoInput = document.getElementById('sexoEstudiante');
+    const programaInput = document.getElementById('programaEstudiante');
 
-    const nuevoEstudiante={
-        id:listaEstudiantes.length+1,
-        identificaion:Id,
-        nombre:nombre,
-        edad: edad,
-        email: email
-    }
+    const id = idInput.value;
+    const nombre = nombreInput.value;
+    const apellido = apellidoInput.value;
+    const tipoDocumento = tipoDocumentoInput.value;
+    const numeroDocumento = numeroDocumentoInput.value;
+    const ciudadResidencia = ciudadResidenciaInput.value;
+    const direccion = direccionInput.value;
+    const telefono = telefonoInput.value;
+    const fechaNacimiento = fechaNacimientoInput.value;
+    const sexo = sexoInput.value;
+    const programaId = programaInput.value;
 
-  
-    await guardarEstudiante(nuevoEstudiante);
-    await loadEstudiantes();
-    
-    IdInput.value='';
-    nombreInput.value='';
-    edadInput.value='';
-    emailInput.value='';
+    const nuevoEstudiante = {
+        id: id,
+        nombre: nombre,
+        apellido: apellido,
+        tipo_documento: tipoDocumento,
+        numero_documento: numeroDocumento,
+        ciudad_residencia: ciudadResidencia,
+        direccion: direccion,
+        telefono: telefono,
+        fecha_nacimiento: fechaNacimiento,
+        sexo: sexo,
+        programa_id: programaId
+    };
+
+    // Lógica para guardar el estudiante (implementar según la aplicación)
+
+    idInput.value = '';
+    nombreInput.value = '';
+    apellidoInput.value = '';
+    tipoDocumentoInput.value = '';
+    numeroDocumentoInput.value = '';
+    ciudadResidenciaInput.value = '';
+    direccionInput.value = '';
+    telefonoInput.value = '';
+    fechaNacimientoInput.value = '';
+    sexoInput.value = '';
+    programaInput.value = '';
 
     alert('Estudiante creado con éxito!');
 
-    return nuevoCliente;
-
+    return nuevoEstudiante;
 }
-const modificarEstudinte =async()=>{
-    const boton1= document.getElementById('botoncrearEstudinte');
-    const boton2 = document.getElementById('botonmodificarEstudinte');
+
+const modificarEstudiante = async () => {
+    const boton1 = document.getElementById('botoncrearEstudiante');
+    const boton2 = document.getElementById('botonmodificarEstudiante');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorestu = document.getElementById('crearEstudiante');
-    boton1.style.display='none';
-    boton2.style.display='none';
-    boton3.style.display='none';
-    
+    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
+
     verificarEstudiantes();
-    if (Estado==='Encontrado'){
-        contenedorestu.innerHTML = `
+    if (Estado === 'Encontrado') {
+        contenedorEstudiantes.innerHTML = `
       <form id="MenuModificarEstudiante">
         <h3>Menu Modificar Estudiantes</h3>
         <h3>Seleccione el item que desea modificar</h3>
         
-        <button for="identificacionEstudiante" onclick="modificarIdentificacion()">Numero de Identificacion del Estudiante:</button>
-        
+        <button for="identificacionEstudiante" onclick="modificarIdentificacion()">Número de Identificación del Estudiante:</button>
         <button for="nombreEstudiante" onclick="modificarNombre()">Nombre del Estudiante:</button>
+        <button for="apellidoEstudiante" onclick="modificarApellido()">Apellido del Estudiante:</button>
+        <button for="tipoDocumentoEstudiante" onclick="modificarTipoDocumento()">Tipo de Documento:</button>
+        <button for="numeroDocumentoEstudiante" onclick="modificarNumeroDocumento()">Número de Documento:</button>
+        <button for="ciudadResidenciaEstudiante" onclick="modificarCiudadResidencia()">Ciudad de Residencia:</button>
+        <button for="direccionEstudiante" onclick="modificarDireccion()">Dirección del Estudiante:</button>
+        <button for="telefonoEstudiante" onclick="modificarTelefono()">Teléfono del Estudiante:</button>
+        <button for="fechaNacimientoEstudiante" onclick="modificarFechaNacimiento()">Fecha de Nacimiento del Estudiante:</button>
+        <button for="sexoEstudiante" onclick="modificarSexo()">Sexo del Estudiante:</button>
+        <button for="programaEstudiante" onclick="modificarPrograma()">ID del Programa:</button>
         
-        <button for="edadEstudiante" onclick="modificarEdad()">Edad del Estudiante:</button>
-        
-        <button for="emailEstudiante" onclick="modificarEmail()">Correo Electrónico del Estudiante:</button>
-        
-        
-        
-        <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
+        <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
         
       </form>
   `;
     }
 
 }
-// const GuardarModificionEstudiante=()={
 
-// }
-
-
-
-
-const modificarIdentificacion=()=>{
-    const contenedorestu = document.getElementById('crearEstudiante');
-    contenedorestu.innerHTML = `
-    <form id="MenuModificarEstudiante">
-    <h3>Seleccione el item que desea Identificacion</h3>
-    <label for="identificacionEstudiante">Numero de Identificacion del Estudiante:</label>
-    <input type="number" id="identificacionEstudiante" required>
-    
-    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
-        
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
-    </form>
-
-    `;
-}
-const modificarNombre=()=>{
-    const contenedorestu = document.getElementById('crearEstudiante');
-    contenedorestu.innerHTML = `
-    <form id="MenuModificarEstudiante">
-    <h3>Menu Modificar Nombre</h3>
-    <label for="nombreEstudiante">Nombre del Estudiante:</label>
-    <input type="text" id="nombreEstudiante" required></input>
-    
-    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
-        
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
-    </form>
-    `;
-}
-
-const modificarEdad=()=>{
-    const contenedorestu = document.getElementById('crearEstudiante');
-    contenedorestu.innerHTML = `
-    <form id="MenuModificarEstudiante">
-    <h3>Menu Modificar Edad</h3>
-    <label for="identificacionEstudiante">Numero de Identificacion del Estudiante:</label>
-    <input type="number" id="identificacionEstudiante" required>
-    
-    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
-        
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
-    </form>
-    `;
-}
-const modificarEmail=()=>{
-    const contenedorestu = document.getElementById('crearEstudiante');
-    contenedorestu.innerHTML = `
-    <form id="MenuModificarEstudiante">
-    <h3>Menu Modificar Email</h3>
-    <label for="emailEstudiante">Correo Electrónico del Estudiante:</label>
-    <input type="email" id="emailEstudiante" required>
-    
-    <button type="button" onclick="GuardarModificionEstudiante()">Guardar Modificion Estudiante</button>
-        
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">atras</button>
-    </form>
-    `;
-}
-
-const verificarEstudiantes= async=()=>{
-    const Estado='';
-    const id=document.getElementById('identificacionEstudiante')
-    const contenedorestu = document.getElementById('crearEstudiante');
-    contenedorestu.innerHTML = `
+const verificarEstudiantes = async () => {
+    const Estado = '';
+    const id = document.getElementById('identificacionEstudiante');
+    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    contenedorEstudiantes.innerHTML = `
       <form id="MenuModificarEstudiante">
-        <h3>Menu Mofificar Estudiantes</h3>
-        <label for="identificacionEstudiante">Numero de Identificacion del Estudiante:</label>
+        <h3>Menu Modificar Estudiante</h3>
+        <label for="identificacionEstudiante">Número de Identificación del Estudiante:</label>
         <input type="number" id="identificacionEstudiante" required>
       </form>
   `;
-    for ( const estudiante of listaEstiudiantes){
-        if (estudiante[identificaion]===id){
+    for (const estudiante of listaEstudiantes) {
+        if (estudiante.id === id) {
             alert('Estudiante Encontrado!');
-            Estado='Encontrado'
-        }
-        else{
-            alert('No se encontro el estudiante!')
+            Estado = 'Encontrado';
+        } else {
+            alert('No se encontró el estudiante!');
         }
     }
 
-    return [Estado, estudiante]
+    return [Estado, estudiante];
 }
+
+const modificarIdentificacion = () => {
+    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    contenedorEstudiantes.innerHTML = `
+    <form id="MenuModificarEstudiante">
+    <h3>Menu Modificar Identificación</h3>
+    <label for="identificacionEstudiante">Número de Identificación del Estudiante:</label>
+    <input type="number" id="identificacionEstudiante" required>
+    <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+    </form>`;
+}
+
+const modificarNombre = () => {
+    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    contenedorEstudiantes.innerHTML = `
+    <form id="MenuModificarEstudiante">
+    <h3>Menu Modificar Nombre</h3>
+    <label for="nombreEstudiante">Nombre del Estudiante:</label>
+    <input type="text" id="nombreEstudiante" required>
+    <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+    </form>`;
+}
+
+const modificarApellido = () => {
+    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    contenedorEstudiantes.innerHTML = `
+    <form id="MenuModificarEstudiante">
+    <h3>Menu Modificar Apellido</h3>
+    <label for="apellidoEstudiante">Apellido del Estudiante:</label>
+    <input type="text" id="apellidoEstudiante" required>
+    <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
+    <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+    </form>`;
+}
+
+// Continuar con los métodos restantes de modificación de campos
+

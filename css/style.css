@@ -4,7 +4,19 @@
     font-size: none;
     list-style-type: none;
 }
+.Informacion{
+    display: flex;
+    gap: 2rem;
+    flex-direction: column ;
+    justify-content: center;
+    justify-content: space-around;
+    
+}
 
+.botonsEstudiantes{
+    padding: 0rem;
+    gap: 2rem;
+}
 #contenedor{
     max-width: 87%;
     border: none;

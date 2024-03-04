@@ -1,46 +1,21 @@
-const botonesdepartamento=async()=>{
-    const departamentosform = document.getElementById('OpcionesDespartamentos');
-    const contenedor = document.getElementById('contenedor');
-    const boton = document.getElementById("botonEstudiantes");
-    const Departamentos =document.getElementById('Departamentos');
-    const Prosfesores =document.getElementById('Prosfesores');
-    const Universidad1 =document.getElementById('Universidad1');
-    const Universidad2 =document.getElementById('Universidad2');
-    const Universidad3 =document.getElementById('Universidad3');
-    const Universidad4 =document.getElementById('Universidad4');
-    const Universidad5 =document.getElementById('Universidad5');
-    const Universidad6 =document.getElementById('Universidad6');
-    const contenedoor =document.getElementById('OpcionesDespartamentos');
-    contenedoor.innerHTML = `
+const botonesDepartamento=async()=>{
+  
+    const contenedordepartamentos =document.getElementById('OpcionesDepartamentos');
+    contenedordepartamentos.innerHTML = `
       <form>
           <button class="botonsDepartamentos" id="botoncrearDepartamento"type="button" onclick="formularioCrearDEpartamento()">Crear Departamentos</button>
           <button class="botonsDepartamentos" id="botonmodificarDepartamento" type="button" onclick="()">Modificar Departamentos</button>
           <button class="botonsDepartamentos" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Deprtamentos</button>
           <div id="departamentoss"></div>
-          <button id="atras" class="atras" onclick="inicio()">atras</button>
+          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
           
-      </form>
-  `;
+      </form>`;
    
-    contenedor.style.alignContent='center';
-    departamentosform.style.display='flex';
-    departamentosform.style.width='1550px';
-    departamentosform.style.height='630px';
-    departamentosform.style.justifyContent='center';
-    departamentosform.style.padding='2rem ';
+      stylesContenedorNuevo(contenedordepartamentos);
+      limpiarpantalla();
 
 
-    boton.style.display="none";
-    Departamentos.style.display='none';
-    Prosfesores.style.display='none';
-    Universidad1.style.display='none';
-    Universidad2.style.display='none';
-    Universidad3.style.display='none';
-    Universidad4.style.display='none';
-    Universidad5.style.display='none';
-    Universidad6.style.display='none';
 }
-
 const formularioCrearDEpartamento= async()=>{
     const boton1= document.getElementById('botoncrearDepartamento');
     const boton2 = document.getElementById('botonmodificarDepartamento')
@@ -110,7 +85,7 @@ const modificarDepartamento =async()=>{
         
         <button for="identificacionEDepartamento" onclick="modificarIdentificacionDepartamento()">Numero de Identificacion del Departamento:</button>
         
-        <button for="nombreEDepartamento" onclick="modificarNombre()">Nombre del Departamento:</button>
+        <button for="nombreEDepartamento" onclick="modificarNombreDepartamento()">Nombre del Departamento:</button>
         
         
         <button id="atras" class="atras" onclick="botonesdepartamento()">atras</button>
@@ -153,14 +128,14 @@ const modificarIdentificacionDepartamento=()=>{
     
     <button type="button" onclick="GuardarModificionDepartamento()">Guardar Modificion Departamento</button>
     
-    <button type="button" onclick="GuardarModificion()">Guardar Modificion Departamento</button>
+    
         
     <button id="atras" class="atras" onclick="modificarDepartamento()">atras</button>
     </form>
 
     `;
 }
-const modificarNombre=()=>{
+const modificarNombreDepartamento=()=>{
     const contenedorestu = document.getElementById('crearEstudiante');
     contenedorestu.innerHTML = `
     <form id="MenuModificarDepartamento">
@@ -170,9 +145,9 @@ const modificarNombre=()=>{
     
     <button type="button" onclick="GuardarModificionDepartamento()">Guardar Modificion Departamento</button>
     
-    <button type="button" onclick="GuardarModificion()">Guardar Modificion Departamento</button>
         
     <button id="atras" class="atras" onclick="modificarDepartamento()">atras</button>
     </form>
     `;
 }
+
