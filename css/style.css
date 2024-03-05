@@ -4,6 +4,19 @@
     font-size: none;
     list-style-type: none;
 }
+.seccionsPrincipal{
+    width: 100px;
+    height: 730px;
+    padding: 4em;
+
+
+}
+#Navs{
+    width: 100px;
+    height: 40px;
+
+
+}
 .Informacion{
     display: flex;
     gap: 2rem;
@@ -33,13 +46,14 @@ main{
 }
 #inicio{
     
-    max-width: 100%;
+    width: 100%;
     height: 730px;
     /* padding: 4px auto; */
     display: flex;
     align-items: center ;
     justify-content: center;
     justify-content: space-between;
+    display: none;
 }
 #left{
     display: flex;

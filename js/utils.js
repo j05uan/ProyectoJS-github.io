@@ -29,8 +29,6 @@ const volverInicio=(valor)=>{
     listadeID.forEach(seccion => {
         const contenido=document.getElementById('contenidoContenedor');
         contenido.innerHTML=`
-        
-        <form>
  
             <section class="secciones" id="${valor}">
                 <div id="boton${valor}">
@@ -39,9 +37,7 @@ const volverInicio=(valor)=>{
                 <div class="Informacion" id="Opciones${valor}">
                     
                 </div>
-            </section> 
-
-        </form>`;
+            </section> `;
             
              
     });
