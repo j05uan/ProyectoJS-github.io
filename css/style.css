@@ -44,6 +44,19 @@ main{
     display: flex;
     display: none;
 }
+#titulo{
+    height: 45%;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#horario{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    gap: 4em;
+}
 #inicio{
     
     width: 100%;

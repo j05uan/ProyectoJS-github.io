@@ -30,7 +30,7 @@ const opcionesEstudiantes= async ()=>{
     const contenedor2 = document.getElementById('OpcionesEstudiantes');
     contenedor2.innerHTML = `
       <form>
-          <button class="botonsEstudiantes" id="botoncrearEstudinte"type="button" onclick="formularioCrearEstudinte()">Crear Estudinte</button>
+          <button class="botonsEstudiantes" id="botoncrearEstudinte"type="button" onclick="formularioCrearEstudiante()">Crear Estudinte</button>
           <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudinte()">Modificar Estudinte</button>
           <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Estudintes</button>
           <div id="crearEstudiante"></div>
