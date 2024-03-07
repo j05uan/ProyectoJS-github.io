@@ -42,3 +42,7 @@ const volverInicio=(valor)=>{
              
     });
 }
+const Ingresar=()=>{
+    document.getElementById('inicio').style.display='flex';
+    document.getElementById('paginaprincipal').style.display='none'
+}

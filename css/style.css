@@ -3,20 +3,67 @@
     padding: 0;
     font-size: none;
     list-style-type: none;
+    
 }
-.seccionsPrincipal{
-    width: 100px;
-    height: 730px;
-    padding: 4em;
 
-
+#paginaprincipal{
+    display: block;
+    padding: .5em;
+    flex-direction: column;
 }
 #Navs{
     width: 100px;
     height: 40px;
+    display: flex;
+    gap: 12em;
+    background-color: blueviolet;
+    
 
 
 }
+.seccionsPrincipal{
+    width: 1812px;
+    height: 870px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#seccionUniversidad{
+    background-color: aqua;
+    
+}
+#opcionesNavs{
+    display: flex;
+    justify-content: space-between;
+    gap: 10em;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+}
+.seccionMisioyVision{
+    display: none;
+}
+.opcionesnavs{
+    padding: 1em ;
+}
+#SobreN{
+    gap: 1em;
+}
+.opcionesnavs:hover{
+    background: grey;
+    display: flex;
+
+}
+#SobreN:hover{
+    display: flex;
+}
+#contenedorPaginaPrincipal{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 .Informacion{
     display: flex;
     gap: 2rem;

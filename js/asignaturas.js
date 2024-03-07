@@ -1,11 +1,55 @@
+const listaAsignaturas=[];
+
+const loadAsignaturas=async()=>{
+    try{
+        listaAsignaturas.length=0;
+        const respuesta=await fetch('http://localhost:3000/asignaturas');
+
+        if(!respuesta.ok){
+           throw new Error('Error al cargar Estudiantes. Estado: ',respuesta.status);
+        }
+        const Asignatura=await respuesta.json();
+        listaEstudiantes.push(...Asignatura);
+
+    }catch(error){
+        console.error("Error al cargar clientes",error.message);
+    }
+}
+
+
+const guardarAsignatura= async(nuevoAsignatura)=>{
+    try{
+
+        const respuesta=await fetch('http://localhost:3000/asignaturas',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(nuevoAsignatura),
+        });
+
+        if(!respuesta.ok){
+           throw new Error('Error al crear el Asignatura. Estado: ',respuesta.status);
+        }
+        const EstudianteCreado=await respuesta.json();
+       
+        
+        console.log('Estudiante creado:', AsignaturaCreado);
+
+    }catch(error){
+        console.error("Error al cargar Asignatura",error.message);
+    }
+}
+
 const botonesAsignatura = async () => {
     const contenedorAsignaturas = document.getElementById('OpcionesAsignaturas');
     contenedorAsignaturas.innerHTML = `
       <form>
           <button class="botonsAsignaturas" id="botoncrearAsignatura" type="button" onclick="formularioCrearAsignatura()">Crear Asignaturas</button>
           <button class="botonsAsignaturas" id="botonmodificarAsignatura" type="button" onclick="modificarAsignatura()">Modificar Asignaturas</button>
-          <button class="botonsAsignaturas" id="botonmostrarListado" type="button" onclick="mostrarListadoAsignaturas()">Ver Listado de Asignaturas</button>
+          <button class="botonsAsignaturas" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Asignaturas</button>
           <div id="asignaturass"></div>
+          <div id="listadoAsignaturas"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
 
@@ -21,6 +65,8 @@ const formularioCrearAsignatura = async () => {
     contenedorAsignaturas.innerHTML = `
       <form id="MenuCrearAsignatura">
         <h3>Menu Crear Asignaturas</h3>
+        <label for="curso_id">Id del curso:</label>
+        <input type="number" id="curso_id" required>
         <label for="codigoAsignatura">Código de la Asignatura:</label>
         <input type="text" id="codigoAsignatura" required>
         <label for="creditosAsignatura">Créditos de la Asignatura:</label>
@@ -31,7 +77,7 @@ const formularioCrearAsignatura = async () => {
         <input type="number" id="profesorAsignatura" required>
         <label for="programaAsignatura">ID del Programa:</label>
         <input type="number" id="programaAsignatura" required>
-        <!-- Puedes agregar más campos aquí según los requisitos de tu aplicación -->
+        <button type="button" onclick="crearAsignaturas()">Crear Asignatura</button>
         <button id="atras" class="atras" onclick="botonesAsignatura()">Atrás</button>
       </form>
   `;
@@ -40,7 +86,6 @@ const formularioCrearAsignatura = async () => {
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
-    await crearAsignaturas();
 }
 
 
@@ -48,20 +93,26 @@ const crearAsignaturas = async () => {
     const codigoInput = document.getElementById('codigoAsignatura');
     const creditosInput = document.getElementById('creditosAsignatura');
     const cuposInput = document.getElementById('cuposAsignatura');
+    const profeInput = document.getElementById('profesorAsignatura');
+    const programaInput = document.getElementById('programaAsignatura');
+    const idcursoInput = document.getElementById('curso_id');
 
+    const idcurso = parseInt(idcursoInput.value);
     const codigo = codigoInput.value;
     const creditos = parseInt(creditosInput.value);
     const cuposDisponibles = parseInt(cuposInput.value);
+    const IDprofe = parseInt(profeInput.value);
+    const Idprograma = parseInt(programaInput.value);
 
     const nuevaAsignatura = {
         id: listaAsignaturas.length + 1,
-        curso_id: 1, // Asumiendo un curso_id predeterminado
+        curso_id: idcurso, 
         codigo: codigo,
         creditos: creditos,
-        profesor_id: 1, // Asumiendo un profesor_id predeterminado
+        profesor_id: IDprofe, 
         cupos_disponibles: cuposDisponibles,
-        programa_id: 1, // Asumiendo un programa_id predeterminado
-        horario_clases: [] // Asumiendo que inicialmente no hay horarios
+        programa_id: Idprograma, 
+        horario_clases: [] 
     };
 
     await guardarAsignatura(nuevaAsignatura);
@@ -70,6 +121,9 @@ const crearAsignaturas = async () => {
     codigoInput.value = '';
     creditosInput.value = '';
     cuposInput.value = '';
+    profeInput.value ='';
+    programaInput.value ='';
+    idcursoInput.value ='';
 
     alert('Asignatura creada con éxito!');
 
@@ -214,4 +268,34 @@ const modificarHorarioAsignatura = () => {
     </form>`;
 }
 
+const  mostrarListado=async()=>{
+    await loadAsignaturas();
+    const contenedor2 = document.getElementById('OpcionesAsignaturas');
+    stylesContenedorNuevo(contenedor2);
+    limpiarpantalla();
+    const listadoAsignaturas= document.getElementById('listadoAsignaturas');
+    listaAsignaturas.style.display='flex';
+    
+    for(const Asignatura of listaAsignaturas){
+        const li=document.createElement('li');
+        li.textContent= `ID: ${Asignatura.id}, Nombre: ${Asignatura.nombre}, Edad: ${Asignatura.edad}, Email: ${Asignatura.email}`;
+        ul.appendChild(li);
+    }
+    listadoEstudiantes.innerHTML='';
+    listadoEstudiantes.appendChild(ul);
+
+    const volverButton=document.createElement('button');
+    volverButton.textContent='Volver al Formulario';
+    volverButton.addEventListener('click',volverFormulario);
+    listadoEstudiantes.appendChild(volverButton);
+}
+
+const volverFormulario=()=>{
+    const AsignaturasForm=document.getElementById('crearAsignatura');
+    const listadoAsignaturas = document.getElementById('listadoEAsignatura');
+
+    listadoAsignaturas.style.display='none';
+    AsignaturasForm.style.display='block';
+    
+}
 

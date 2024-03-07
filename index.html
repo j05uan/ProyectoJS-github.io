@@ -11,22 +11,28 @@
    <section id="paginaprincipal">
     <nav id="Navs"> 
         <img src="" alt="">logo
-        <ul>
-            <li onclick="seccionUniversidad" id="LaUniversidad">La Universidad</li>
-            <li onclick="seccionSedes" id="Sedes">Sedes</li>
-            <li onclick="seccionInvestigacion" id="Investigacion">Investigacion</li>
-            <li onclick="seccionExternalizacion" id="Externalizacion">Externalizacion</li>
-            <li onclick="seccionMisioyVision" id="MisioyVision">Misio y Vision</li>
-            <li onclick="seccioningresar" id="ingresar">ingresar</li>
+        <ul id="opcionesNavs">
+            <li class="opcionesnavs" onclick="seccionUniversidad" id="LaUniversidad">La Universidad</li>
+            <li class="opcionesnavs" onclick="seccionSedes" id="Sedes">Sedes</li>
+            <li class="opcionesnavs" onclick="seccionInvestigacion" id="Investigacion">Investigacion</li>
+            <li class="opcionesnavs" onclick="seccionExternalizacion" id="Externalizacion">Externalizacion</li>
+            <li class="opcionesnavs" onclick="seccionSobreN" id="SobreN">Sobre nosotros
+                <ul>
+                    <li class="seccionMisioyVision" onclick="">Misio</li>
+                    <li class="seccionMisioyVision" onclick="">Vision</li>
+                </ul>
+            
+            </li>
+            <li class="opcionesnavs" onclick="Ingresar()" id="ingresar">ingresar</li>
         </ul>
     </nav>
     <main id="contenedorPaginaPrincipal">
-        <sectio class="seccionsPrincipal" id="seccionUniversidad"></sectio>
-        <sectio class="seccionsPrincipal" id="seccionSedes"></sectio>
-        <sectio class="seccionsPrincipal" id="seccionInvestigacion"></sectio>
-        <sectio class="seccionsPrincipal" id="seccionExternalizacion"></sectio>
-        <sectio class="seccionsPrincipal" id="seccionMisioyVision"></sectio>
-        <sectio class="seccionsPrincipal" id="seccioningresar"></sectio>
+        <section class="seccionsPrincipal" id="seccionUniversidad">Universidad</section>
+        <section class="seccionsPrincipal" id="seccionSedes">Sedes</section>
+        <section class="seccionsPrincipal" id="seccionInvestigacion"></section>
+        <section class="seccionsPrincipal" id="seccionExternalizacion"></section>
+        <section class="seccionsPrincipal" id="seccionSobreN"></section>
+
     </main>
    </section>
     <section id="inicio">

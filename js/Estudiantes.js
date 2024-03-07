@@ -1,7 +1,26 @@
+const listaEstudiantes=[];
+
+const loadEstudiantes=async()=>{
+    try{
+        listaEstudiantes.length=0;
+        const respuesta=await fetch('http://localhost:3000/alumnos');
+
+        if(!respuesta.ok){
+           throw new Error('Error al cargar Estudiantes. Estado: ',respuesta.status);
+        }
+        const Estudiante=await respuesta.json();
+        listaEstudiantes.push(...Estudiante);
+
+    }catch(error){
+        console.error("Error al cargar clientes",error.message);
+    }
+}
+
+
 const guardarEstudiante= async(nuevoEstudiante)=>{
     try{
 
-        const respuesta=await fetch('http://localhost:3000/clientes',{
+        const respuesta=await fetch('http://localhost:3000/alumnos',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -25,7 +44,6 @@ const guardarEstudiante= async(nuevoEstudiante)=>{
 
 
 const opcionesEstudiantes= async ()=>{
-    // await loadEstudiantes();
     
     const contenedor2 = document.getElementById('OpcionesEstudiantes');
     contenedor2.innerHTML = `
@@ -34,6 +52,7 @@ const opcionesEstudiantes= async ()=>{
           <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudinte()">Modificar Estudinte</button>
           <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Estudintes</button>
           <div id="crearEstudiante"></div>
+          <div id="listadoEstudiantes"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
           
       </form>`;
@@ -82,7 +101,6 @@ const formularioCrearEstudiante = async () => {
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
-    await crearEstudiante();
 }
 
 const crearEstudiante = async () => {
@@ -124,7 +142,8 @@ const crearEstudiante = async () => {
         programa_id: programaId
     };
 
-    // Lógica para guardar el estudiante (implementar según la aplicación)
+    await guardarEstudiante(nuevoEstudiante);
+    await loadEstudiantes();
 
     idInput.value = '';
     nombreInput.value = '';
@@ -239,4 +258,37 @@ const modificarApellido = () => {
 }
 
 // Continuar con los métodos restantes de modificación de campos
+
+const  mostrarListado=async()=>{
+    await loadEstudiantes();
+    const contenedor2 = document.getElementById('OpcionesEstudiantes');
+    stylesContenedorNuevo(contenedor2);
+    limpiarpantalla();
+    const listadoEstudiantes= document.getElementById('listadoEstudiantes');
+    listaEstudiantes.style.display='flex';
+    
+    for(const Estudiante of listaEstudiantes){
+        const li=document.createElement('li');
+        li.textContent= `ID: ${Estudiante.id}, Nombre: ${Estudiante.nombre}, Edad: ${Estudiante.edad}, Email: ${Estudiante.email}`;
+        ul.appendChild(li);
+    }
+    listadoEstudiantes.innerHTML='';
+    listadoEstudiantes.appendChild(ul);
+
+    const volverButton=document.createElement('button');
+    volverButton.textContent='Volver al Formulario';
+    volverButton.addEventListener('click',volverFormulario);
+    listadoEstudiantes.appendChild(volverButton);
+}
+
+const volverFormulario=()=>{
+    const EstudiantesForm=document.getElementById('crearEstudiante');
+    const listadoEstudiantes = document.getElementById('listadoEstudiantes');
+
+    listadoEstudiantes.style.display='none';
+    EstudiantesForm.style.display='block';
+    
+}
+
+
 
