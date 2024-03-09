@@ -12,6 +12,7 @@ const botonesCursos = async () => {
     stylesContenedorNuevo(contenedorCursos);
     limpiarpantalla();
 }
+HolaJp
 
 const formularioCrearCurso = async () => {
   const boton1 = document.getElementById('botoncrearCurso');
